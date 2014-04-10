@@ -1,4 +1,4 @@
-package com.mait.learningengin.models;
+package com.maiteam.learningengine.models;
 
 /**
  * @author Neimad

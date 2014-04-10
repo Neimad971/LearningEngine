@@ -1,4 +1,4 @@
-package com.mait.learningengin.controllers;
+package com.maiteam.learningengine.controllers;
 
 import java.text.DateFormat;
 import java.util.Date;
