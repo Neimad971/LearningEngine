@@ -1,0 +1,67 @@
+/* Script SQL pour le e-learning : 
+   nom de la base de données : bdd_learning 
+*/
+
+create table T_Users(
+idUser integer NOT NULL primary key AUTO_INCREMENT,
+firstname varchar(50) NOT NULL,
+lastname varchar(50) NOT NULL,
+login varchar(50) NOT NULL,
+password varchar(50) NOT NULL,
+role varchar(50) NOT NULL,
+email varchar(80) NOT NULL)
+ENGINE=InnoDB; 
+
+create table T_Course(
+idCourse integer NOT NULL primary key AUTO_INCREMENT,
+label varchar(80) NOT NULL,
+typeCourse varchar(30) NOT NULL,
+dateOfCourse date NOT NULL,
+room varchar(20),
+description text,
+courseMaterial varchar(80))
+ENGINE=InnoDB;
+
+create table T_Education(
+idEducation integer NOT NULL primary key AUTO_INCREMENT,
+idUser integer NOT NULL,
+idCourse integer NOT NULL)
+ENGINE=InnoDB;
+
+ALTER TABLE `t_education` ADD FOREIGN KEY ( `idUser` ) REFERENCES `bdd_learning`.`t_users` (`idUser`) ON DELETE NO ACTION ON UPDATE CASCADE ;
+
+ALTER TABLE `t_education` ADD FOREIGN KEY ( `idCourse` ) REFERENCES `bdd_learning`.`t_course` (`idCourse`) ON DELETE NO ACTION ON UPDATE CASCADE ;
+
+
+create table T_Assessment(
+idAssessment integer NOT NULL primary key AUTO_INCREMENT,
+idEducation integer NOT NULL,
+dateOfAssessment date NOT NULL,
+roomOfAssessment varchar(20))
+ENGINE=InnoDB;
+
+ALTER TABLE `t_assessment` ADD FOREIGN KEY ( `idEducation` ) REFERENCES `bdd_learning`.`t_education` (`idEducation`) ON DELETE NO ACTION ON UPDATE CASCADE ;
+
+create table T_Mark(
+idMark integer NOT NULL primary key AUTO_INCREMENT,
+idUser integer NOT NULL,
+idAssessment integer NOT NULL,
+score integer NOT NULL)
+ENGINE=InnoDB;
+
+ALTER TABLE `t_mark` ADD FOREIGN KEY ( `idUser` ) REFERENCES `bdd_learning`.`t_users` (`idUser`) ON DELETE NO ACTION ON UPDATE CASCADE ;
+ALTER TABLE `t_mark` ADD FOREIGN KEY ( `idAssessment` ) REFERENCES `bdd_learning`.`t_assessment` (`idAssessment`) ON DELETE NO ACTION ON UPDATE CASCADE ;
+
+
+
+/*Insertion des données */
+
+insert into T_Users(idUser,firstname,lastname,login,password,role,email)
+values (1,'prenomEtud1','nomEtud1','loginEtud1','mdp','etudiant','etud1@email.fr');
+
+insert into T_Users(idUser,firstname,lastname,login,password,role,email)
+values (2,'prenomProf1','nomProf1','loginProf1','mdp','professeur','prof1@email.fr');
+
+insert into T_Users(idUser,firstname,lastname,login,password,role,email)
+values (3,'adminEtud1','adminEtud1','loginAdmin1','mdp','admin','admin1@email.fr');
+
