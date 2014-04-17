@@ -2,81 +2,104 @@ package com.maiteam.learningengine.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
 
 /**
  * @author Neimad
  *
  * modèle cours
  */
+@Entity
+@Table(name = "course")
 public class Course 
 {
+	
+	
 	/**
 	 * identifiant du cours
 	 */
-	private String idCourse;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idCourse")
+	private int idCourse;
 	
 	
 	/**
 	 * identifiant du professeur
 	 */
-	private String idUser;
+	@Column(name = "idUser")
+	private int idUser;
 	
 	
 	/**
 	 * intitulé du cours
 	 */
+	@Column(name = "label")
 	private String label;
 	
 	
 	/**
 	 * type de cours : présentiel ou en ligne
 	 */
+	@Column(name = "type")
 	private String type;
 	
 	
 	/**
 	 * date du cours : jour,mois,année et heure
 	 */
+	@Column(name = "dateOfCourse")
 	private Date dateOfCourse;
 	
 	
 	/**
 	 * salle de cours : uniquement pour ceux qui sont en présentiels
 	 */
+	@Column(name = "room")
 	private String room;
 	
 	
 	/**
 	 * descriptif du cours 
 	 */
+	@Column(name = "description")
 	private String description;
 	
 	
 	/**
 	 * support du cours : *.pdf, *.docx, *.pptx, ...etc
 	 */
+	@Column(name = "courseMaterial")
 	private String courseMaterial;
 	
 	
-	public String getIdCourse() 
+	public int getIdCourse() 
 	{
 		return idCourse;
 	}
 	
 	
-	public void setIdCourse(String idCourse) 
+	public void setIdCourse(int idCourse) 
 	{
 		this.idCourse = idCourse;
 	}
 	
 	
-	public String getIdUser() 
+	public int getIdUser() 
 	{
 		return idUser;
 	}
 	
 	
-	public void setIdUser(String idUser) 
+	public void setIdUser(int idUser) 
 	{
 		this.idUser = idUser;
 	}
