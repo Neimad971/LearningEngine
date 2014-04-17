@@ -12,6 +12,7 @@
 		
 		
 		<class>com.maiteam.learningengine.models.Course</class>
+		<class>com.maiteam.learningengine.models.User</class>
 	
  	<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>

@@ -36,7 +36,7 @@ public class AdministratorController
 		for(int i=0; i<5; i++)
 		{
 			user = new User();
-			user.setIdUser("id" + i);
+			user.setIdUser(i);
 			user.setFirstname("firstname" + i);
 			user.setLastname("lastname" + i);
 			user.setLogin("login" + i);
@@ -56,7 +56,7 @@ public class AdministratorController
 	public User searchUserById()
 	{
 		User user = new User();
-		user.setIdUser("id" + 0);
+		user.setIdUser(0);
 		user.setFirstname("firstname" + 0);
 		user.setLastname("lastname" + 0);
 		user.setLogin("login" + 0);
