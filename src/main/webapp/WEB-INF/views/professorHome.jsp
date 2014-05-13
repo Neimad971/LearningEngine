@@ -31,7 +31,7 @@
 			
 			<li><a href="#">Paramètres</a>
 				<ul>
-					<li><a href="http://localhost:8080/learningengin/studenthome">Mon compte</a></li>
+					<li><a href="${pageContext.request.contextPath}/studenthome">Mon compte</a></li>
 					<li><a href="#">Déconnexion</a></li>
 				</ul>
 			</li>
