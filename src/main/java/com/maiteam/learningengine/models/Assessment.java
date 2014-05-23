@@ -11,25 +11,25 @@ public class Assessment
 {
 	
 	/**
-	 * identifiant de l'Ã©valuation
+	 * identifiant de l'évaluation
 	 */
 	private String idAssessment;
 	
 	
 	/**
-	 * identifiant du course pour lequel Ã  lieu l'Ã©valuation
+	 * identifiant du course pour lequel a lieu l'évaluation
 	 */
 	private String idCourse;
 	
 	
 	/**
-	 * date de l'Ã©valuation
+	 * date de l'évaluation
 	 */
 	private Date dateOfAssessment;
 	
 	
 	/**
-	 * salle de l'Ã©valuation
+	 * salle de l'évaluation
 	 */
 	private String RoomOfAssessment;
 

@@ -2,42 +2,23 @@
 <%@ page session="false" %>
 <html>
 
+	<link href="./resources/css/bootstrap.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="./resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="./resources/css/bootstrap-theme.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="./resources/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" media="screen" />
+
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<jsp:include page="Menu.jsp"></jsp:include>
+		
 		<title>Home</title>
-		<link href="<c:url value="/resources/css/home.css" />" rel="stylesheet">
+
 	</head>
 	
 	<body>
-	
-		<ul id="menu-demo2">
-		
-			<li><a href="#">Mes cours</a>
-				<ul>
-					<li><a href="#">En ligne</a></li>
-					<li><a href="#">En présentiel</a></li>
-					<li><a href="#">Créer un nouveau cours</a></li>
-				</ul>
-			</li>
-			
-			
-			<li><a href="#">Evaluations</a>
-				<ul>
-					<li><a href="#">Affecter une évaluation à un cours</a></li>
-					<li><a href="#">Affecter des notes</a></li>
-				</ul>
-			</li>
-			
-			<li><a href="#">IDK</a></li>
-			
-			<li><a href="#">Paramètres</a>
-				<ul>
-					<li><a href="${pageContext.request.contextPath}/studenthome">Mon compte</a></li>
-					<li><a href="#">Déconnexion</a></li>
-				</ul>
-			</li>
-			
-		</ul>
-		
+
+
+
 	</body>
 	
 </html>

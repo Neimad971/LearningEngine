@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 /**
- * contrÃ´leur permettant d'aiguiller les requÃªtes HTTP quand on est connectÃ© avec le role "professeur"
+ * contrôleur permettant d'aiguiller les requêtes HTTP quand on est connecté avec le role "professeur"
  */
 @Controller
 public class ProfessorHomeController 
 {
 	/**
-	 * aiguillaige de la requÃªte HTTP "/learningengin/professorhome"
+	 * aiguillaige de la requête HTTP "/learningengine/professorhome"
 	 * @return professorHome, home du professeur
 	 */
 	@RequestMapping(value = "/professorhome", method = RequestMethod.GET)
