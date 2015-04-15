@@ -1,0 +1,139 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.4
+-- http://www.phpmyadmin.net
+--
+-- Client: localhost
+-- Version du serveur: 5.6.12-log
+-- Version de PHP: 5.4.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de données: `bdd_learning`
+--
+CREATE DATABASE IF NOT EXISTS `bdd_learning` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `bdd_learning`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_assessment`
+--
+
+CREATE TABLE IF NOT EXISTS `t_assessment` (
+  `idAssessment` int(11) NOT NULL AUTO_INCREMENT,
+  `idEducation` int(11) NOT NULL,
+  `dateOfAssessment` date NOT NULL,
+  `roomOfAssessment` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`idAssessment`),
+  KEY `idEducation` (`idEducation`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_course`
+--
+
+CREATE TABLE IF NOT EXISTS `t_course` (
+  `idCourse` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(80) NOT NULL,
+  `typeCourse` varchar(30) NOT NULL,
+  `dateOfCourse` date NOT NULL,
+  `room` varchar(20) DEFAULT NULL,
+  `description` text,
+  `courseMaterial` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`idCourse`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_education`
+--
+
+CREATE TABLE IF NOT EXISTS `t_education` (
+  `idEducation` int(11) NOT NULL AUTO_INCREMENT,
+  `idUser` int(11) NOT NULL,
+  `idCourse` int(11) NOT NULL,
+  PRIMARY KEY (`idEducation`),
+  KEY `idUser` (`idUser`),
+  KEY `idCourse` (`idCourse`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_mark`
+--
+
+CREATE TABLE IF NOT EXISTS `t_mark` (
+  `idMark` int(11) NOT NULL AUTO_INCREMENT,
+  `idUser` int(11) NOT NULL,
+  `idAssessment` int(11) NOT NULL,
+  `score` int(11) NOT NULL,
+  PRIMARY KEY (`idMark`),
+  KEY `idUser` (`idUser`),
+  KEY `idAssessment` (`idAssessment`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_users`
+--
+
+CREATE TABLE IF NOT EXISTS `t_users` (
+  `idUser` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `role` varchar(50) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  PRIMARY KEY (`idUser`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `t_users`
+--
+
+INSERT INTO `t_users` (`idUser`, `firstname`, `lastname`, `login`, `password`, `role`, `email`) VALUES
+(1, 'prenomEtud1', 'nomEtud1', 'loginEtud1', 'mdp', 'etudiant', 'etud1@email.fr'),
+(2, 'prenomProf1', 'nomProf1', 'loginProf1', 'mdp', 'professeur', 'prof1@email.fr'),
+(3, 'adminEtud1', 'adminEtud1', 'loginAdmin1', 'mdp', 'admin', 'admin1@email.fr');
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `t_assessment`
+--
+ALTER TABLE `t_assessment`
+  ADD CONSTRAINT `t_assessment_ibfk_1` FOREIGN KEY (`idEducation`) REFERENCES `t_education` (`idEducation`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `t_education`
+--
+ALTER TABLE `t_education`
+  ADD CONSTRAINT `t_education_ibfk_2` FOREIGN KEY (`idCourse`) REFERENCES `t_course` (`idCourse`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_education_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `t_users` (`idUser`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `t_mark`
+--
+ALTER TABLE `t_mark`
+  ADD CONSTRAINT `t_mark_ibfk_2` FOREIGN KEY (`idAssessment`) REFERENCES `t_assessment` (`idAssessment`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_mark_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `t_users` (`idUser`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
